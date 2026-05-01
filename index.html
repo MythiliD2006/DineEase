@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DineEase — Premium Indian Food Ordering</title>
+    <meta name="description" content="DineEase — Order authentic Indian cuisine online. Explore 50+ dishes from North Indian, South Indian, Street Food, Biryani, Desserts and more.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- ========== NAVBAR ========== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo" id="logo">
+                <span class="logo-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg></span>
+                <span class="logo-text">Dine<span class="logo-accent">Ease</span></span>
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="#home" class="nav-link active" data-section="home">Home</a>
+                <a href="#categories" class="nav-link" data-section="categories">Categories</a>
+                <a href="#must-try" class="nav-link" data-section="must-try">Must Try</a>
+                <a href="#menu" class="nav-link" data-section="menu">Menu</a>
+            </div>
+            <div class="nav-actions">
+                <div class="search-toggle" id="searchToggle">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                </div>
+                <!-- Profile / Login Button -->
+                <div class="profile-wrapper" id="profileWrapper">
+                    <button class="profile-btn" id="profileBtn" aria-label="User profile">
+                        <svg class="profile-icon-default" id="profileIconDefault" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        <span class="profile-avatar" id="profileAvatar" style="display:none"></span>
+                    </button>
+                    <!-- Profile Dropdown -->
+                    <div class="profile-dropdown" id="profileDropdown">
+
+                    </div>
+                </div>
+                <button class="cart-btn" id="cartBtn" aria-label="Open cart">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+        <!-- Search Bar -->
+        <div class="search-bar-container" id="searchBarContainer">
+            <div class="search-bar">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <input type="text" id="searchInput" placeholder="Search for dishes, cuisines..." autocomplete="off">
+                <button class="search-close" id="searchClose">&times;</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section class="hero" id="home">
+        <div class="hero-bg-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">#1 Food Delivery in India</div>
+                <h1 class="hero-title">
+                    Craving <span class="text-gradient">Authentic</span><br>
+                    Indian Flavours?
+                </h1>
+                <p class="hero-subtitle">From spicy Biryanis to sweet Gulab Jamuns — explore 50+ handpicked dishes from the best kitchens across India, delivered to your doorstep.</p>
+                <div class="hero-actions">
+                    <a href="#menu" class="btn btn-primary" id="heroExploreBtn">
+                        Explore Menu
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+                    </a>
+                    <a href="#must-try" class="btn btn-outline">Must Try Dishes</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Dishes</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat">
+                        <span class="stat-number">12</span>
+                        <span class="stat-label">Categories</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat">
+                        <span class="stat-number">30 min</span>
+                        <span class="stat-label">Avg Delivery</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-food-circle">
+                    <!-- Decorative orbit rings -->
+                    <div class="orbit-ring orbit-ring-1"></div>
+                    <div class="orbit-ring orbit-ring-2"></div>
+                    <!-- Rotating food orbit -->
+                    <div class="food-orbit">
+                        <img class="hero-float-img f1" src="https://foodish-api.com/images/butter-chicken/butter-chicken1.jpg" alt="Butter Chicken">
+                        <img class="hero-float-img f2" src="https://foodish-api.com/images/biryani/biryani1.jpg" alt="Biryani">
+                        <img class="hero-float-img f3" src="https://foodish-api.com/images/dosa/dosa1.jpg" alt="Dosa">
+                        <img class="hero-float-img f4" src="https://foodish-api.com/images/samosa/samosa1.jpg" alt="Samosa">
+                        <img class="hero-float-img f5" src="https://www.themealdb.com/images/media/meals/qptpvt1487339892.jpg" alt="Tandoori Chicken">
+                        <img class="hero-float-img f6" src="https://images.pexels.com/photos/15014918/pexels-photo-15014918.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Gulab Jamun">
+                    </div>
+                    <!-- Glowing center logo -->
+                    <div class="center-logo">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
+                        <span class="center-logo-text">DineEase</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CATEGORIES SECTION ========== -->
+    <section class="section categories-section" id="categories">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Browse</span>
+                <h2 class="section-title">Explore by <span class="text-gradient">Category</span></h2>
+                <p class="section-subtitle">From hearty North Indian gravies to crispy South Indian dosas — pick your craving</p>
+            </div>
+
+            <!-- Diet Toggle -->
+            <div class="diet-toggle-wrapper">
+                <div class="diet-toggle" id="dietToggle">
+                    <button class="diet-btn active" data-diet="all" id="dietAll">All</button>
+                    <button class="diet-btn" data-diet="veg" id="dietVeg">
+                        <span class="veg-dot"></span> Veg
+                    </button>
+                    <button class="diet-btn" data-diet="nonveg" id="dietNonVeg">
+                        <span class="nonveg-dot"></span> Non-Veg
+                    </button>
+                    <div class="diet-slider" id="dietSlider"></div>
+                </div>
+            </div>
+
+            <div class="categories-grid" id="categoriesGrid">
+                <!-- Categories rendered by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== MUST-TRY SECTION ========== -->
+    <section class="section must-try-section" id="must-try">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Popular</span>
+                <h2 class="section-title">Must-Try <span class="text-gradient">Dishes</span></h2>
+                <p class="section-subtitle">Our most loved dishes, handpicked by food lovers across India</p>
+            </div>
+            <div class="must-try-grid" id="mustTryGrid">
+                <!-- Must-try items rendered by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FULL MENU SECTION ========== -->
+    <section class="section menu-section" id="menu">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Full Menu</span>
+                <h2 class="section-title">Our Complete <span class="text-gradient">Menu</span></h2>
+                <p class="section-subtitle">Browse all dishes, filter by category, diet, price, or rating</p>
+            </div>
+
+            <!-- Menu Filters -->
+            <div class="menu-filters" id="menuFilters">
+                <div class="filter-row">
+                    <div class="filter-chips" id="categoryChips">
+                        <button class="chip active" data-category="all" id="chipAll">All</button>
+                        <!-- chips rendered by JS -->
+                    </div>
+                </div>
+                <div class="filter-row filter-row-secondary">
+                    <div class="filter-group">
+                        <label class="filter-label">Diet:</label>
+                        <select class="filter-select" id="menuDietFilter">
+                            <option value="all">All</option>
+                            <option value="veg">Veg Only</option>
+                            <option value="nonveg">Non-Veg Only</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">Sort by:</label>
+                        <select class="filter-select" id="menuSortFilter">
+                            <option value="default">Default</option>
+                            <option value="price-low">Price: Low → High</option>
+                            <option value="price-high">Price: High → Low</option>
+                            <option value="rating">Rating</option>
+                            <option value="name">Name (A-Z)</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">Price:</label>
+                        <select class="filter-select" id="menuPriceFilter">
+                            <option value="all">Any Price</option>
+                            <option value="0-150">Under ₹150</option>
+                            <option value="150-300">₹150 – ₹300</option>
+                            <option value="300-500">₹300 – ₹500</option>
+                            <option value="500-9999">₹500+</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-results-info" id="menuResultsInfo"></div>
+            <div class="menu-grid" id="menuGrid">
+                <!-- All items rendered by JS -->
+            </div>
+            <div class="no-results" id="noResults" style="display:none;">
+                <div class="no-results-icon"><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--text3)" stroke-width="1.5"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg></div>
+                <h3>No dishes found</h3>
+                <p>Try adjusting your filters or search terms</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <span class="logo-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg></span>
+                        <span class="logo-text">Dine<span class="logo-accent">Ease</span></span>
+                    </div>
+                    <p class="footer-desc">Premium Indian food delivery — bringing authentic flavours from the best kitchens across India, right to your doorstep.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <a href="#home">Home</a>
+                    <a href="#categories">Categories</a>
+                    <a href="#must-try">Must Try</a>
+                    <a href="#menu">Full Menu</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Categories</h4>
+                    <a href="#">North Indian</a>
+                    <a href="#">South Indian</a>
+                    <a href="#">Street Food</a>
+                    <a href="#">Biryani &amp; Rice</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <a href="#">support@dineease.in</a>
+                    <a href="#">+91 98765 43210</a>
+                    <a href="#">Mumbai, India</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 DineEase. All rights reserved. Made with love in India.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== CART SIDEBAR ========== -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <aside class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="cart-close" id="cartClose" aria-label="Close cart">&times;</button>
+        </div>
+        <div class="cart-body" id="cartBody">
+            <div class="cart-empty" id="cartEmpty">
+                <div class="cart-empty-icon"><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--text3)" stroke-width="1.5"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg></div>
+                <h4>Your cart is empty</h4>
+                <p>Add some delicious dishes to get started!</p>
+                <a href="#menu" class="btn btn-primary btn-sm" id="cartBrowseBtn">Browse Menu</a>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <!-- Cart items rendered by JS -->
+            </div>
+        </div>
+        <div class="cart-footer" id="cartFooter" style="display:none;">
+            <div class="cart-summary">
+                <div class="cart-summary-row">
+                    <span>Subtotal</span>
+                    <span id="cartSubtotal">₹0</span>
+                </div>
+                <div class="cart-summary-row">
+                    <span>Delivery Fee</span>
+                    <span id="cartDelivery">₹40</span>
+                </div>
+                <div class="cart-summary-row">
+                    <span>GST (5%)</span>
+                    <span id="cartGst">₹0</span>
+                </div>
+                <div class="cart-summary-row cart-total">
+                    <span>Total</span>
+                    <span id="cartTotal">₹0</span>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-block" id="checkoutBtn">
+                Proceed to Checkout
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+        </div>
+    </aside>
+
+    <!-- ========== TOAST NOTIFICATION ========== -->
+    <div class="toast-container" id="toastContainer"></div>
+
+
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
