@@ -80,6 +80,24 @@
             margin-bottom: 16px;
             color: var(--text3);
         }
+        .clear-orders-wrapper {
+            margin-top: 20px;
+            display: none; /* Hidden by default, shown if orders exist */
+        }
+        .btn-clear {
+            padding: 10px 20px;
+            font-size: 0.85rem;
+            border: 1.5px solid var(--border);
+            color: var(--text3);
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        .btn-clear:hover {
+            border-color: var(--red);
+            color: var(--red);
+            background: rgba(239, 68, 68, 0.05);
+        }
     </style>
 </head>
 <body>
@@ -101,6 +119,9 @@
         <div class="orders-header">
             <h1 class="section-title">Your Order <span class="text-gradient">History</span></h1>
             <p class="section-subtitle">View and track all your previous delicious experiences</p>
+            <div class="clear-orders-wrapper" id="clearOrdersWrapper">
+                <button class="btn-clear" id="clearOrdersBtn">Clear Order History</button>
+            </div>
         </div>
 
         <div id="ordersList">
@@ -109,11 +130,13 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+        function renderOrders() {
             const ordersList = document.getElementById('ordersList');
+            const clearWrapper = document.getElementById('clearOrdersWrapper');
             const orders = JSON.parse(localStorage.getItem('dineease_orders') || '[]');
 
             if (orders.length === 0) {
+                clearWrapper.style.display = 'none';
                 ordersList.innerHTML = `
                     <div class="no-orders">
                         <div class="no-orders-icon">
@@ -131,6 +154,7 @@
                 return;
             }
 
+            clearWrapper.style.display = 'block';
             ordersList.innerHTML = orders.map(order => `
                 <div class="order-card">
                     <div class="order-header">
@@ -151,6 +175,17 @@
                     </div>
                 </div>
             `).join('');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderOrders();
+
+            document.getElementById('clearOrdersBtn').addEventListener('click', () => {
+                if (confirm('Are you sure you want to clear your entire order history?')) {
+                    localStorage.removeItem('dineease_orders');
+                    renderOrders();
+                }
+            });
         });
     </script>
 </body>
