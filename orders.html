@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order History — DineEase</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .orders-container {
+            max-width: 800px;
+            margin: 120px auto 60px;
+            padding: 0 24px;
+        }
+        .orders-header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        .order-card {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            margin-bottom: 24px;
+            transition: var(--transition);
+        }
+        .order-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 16px;
+            margin-bottom: 16px;
+        }
+        .order-id {
+            font-size: 0.85rem;
+            color: var(--text3);
+        }
+        .order-date {
+            font-weight: 600;
+            color: var(--text2);
+        }
+        .order-items {
+            list-style: none;
+            margin-bottom: 16px;
+        }
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+        .order-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+        .order-total {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+        .no-orders {
+            text-align: center;
+            padding: 60px 20px;
+            background: var(--bg2);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+        .no-orders-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+            color: var(--text3);
+        }
+    </style>
+</head>
+<body>
+    <!-- ========== NAVBAR ========== -->
+    <nav class="navbar scrolled">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg></span>
+                <span class="logo-text">Dine<span class="logo-accent">Ease</span></span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="orders.html" class="nav-link active">Orders</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="orders-container">
+        <div class="orders-header">
+            <h1 class="section-title">Your Order <span class="text-gradient">History</span></h1>
+            <p class="section-subtitle">View and track all your previous delicious experiences</p>
+        </div>
+
+        <div id="ordersList">
+            <!-- Orders will be rendered here -->
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const ordersList = document.getElementById('ordersList');
+            const orders = JSON.parse(localStorage.getItem('dineease_orders') || '[]');
+
+            if (orders.length === 0) {
+                ordersList.innerHTML = `
+                    <div class="no-orders">
+                        <div class="no-orders-icon">
+                            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/>
+                                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+                            </svg>
+                        </div>
+                        <h3>No orders found</h3>
+                        <p>You haven't placed any orders yet. Explore our menu to get started!</p>
+                        <br>
+                        <a href="index.html#menu" class="btn btn-primary">Browse Menu</a>
+                    </div>
+                `;
+                return;
+            }
+
+            ordersList.innerHTML = orders.map(order => `
+                <div class="order-card">
+                    <div class="order-header">
+                        <span class="order-date">${order.date}</span>
+                        <span class="order-id">ID: #${order.id}</span>
+                    </div>
+                    <ul class="order-items">
+                        ${order.items.map(item => `
+                            <li class="order-item">
+                                <span>${item.name} × ${item.qty}</span>
+                                <span>₹${item.price * item.qty}</span>
+                            </li>
+                        `).join('')}
+                    </ul>
+                    <div class="order-footer">
+                        <span>Total Paid</span>
+                        <span class="order-total">₹${order.total}</span>
+                    </div>
+                </div>
+            `).join('');
+        });
+    </script>
+</body>
+</html>

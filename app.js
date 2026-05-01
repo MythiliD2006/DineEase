@@ -254,7 +254,30 @@ function initCart() {
   $('#cartClose').addEventListener('click', close);
   $('#cartOverlay').addEventListener('click', close);
   $('#cartBrowseBtn').addEventListener('click', close);
-  $('#checkoutBtn').addEventListener('click', () => { showToast('Order placed successfully!'); cart=[]; onCartChange(); close(); });
+  $('#checkoutBtn').addEventListener('click', () => {
+    if (!cart.length) return;
+    
+    const subtotal = cart.reduce((s,c) => s + c.price*c.qty, 0);
+    const delivery = subtotal > 500 ? 0 : 40;
+    const gst = Math.round(subtotal * 0.05);
+    const total = subtotal + delivery + gst;
+    
+    const order = {
+      id: Date.now(),
+      date: new Date().toLocaleString(),
+      items: cart.map(c => ({ name: c.name, qty: c.qty, price: c.price })),
+      total: total
+    };
+    
+    const orders = JSON.parse(localStorage.getItem('dineease_orders') || '[]');
+    orders.unshift(order);
+    localStorage.setItem('dineease_orders', JSON.stringify(orders));
+    
+    showToast('Order placed successfully!');
+    cart=[]; 
+    onCartChange(); 
+    close(); 
+  });
 }
 
 function initNavbar() {
