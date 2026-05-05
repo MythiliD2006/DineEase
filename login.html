@@ -423,6 +423,17 @@
 
         <form id="loginForm" novalidate>
           <div class="field">
+            <label for="loginName">Full name</label>
+            <div class="input-wrap">
+              <span class="icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </span>
+              <input type="text" id="loginName" placeholder="Enter your name" autocomplete="name">
+            </div>
+            <span class="error-msg" id="loginNameErr">Name must be at least 2 characters.</span>
+          </div>
+
+          <div class="field">
             <label for="loginEmail">Email address</label>
             <div class="input-wrap">
               <span class="icon">
@@ -567,10 +578,10 @@
     }
 
     function clearErrors() {
-      ['loginEmail','loginPassword'].forEach(id => {
+      ['loginName','loginEmail','loginPassword'].forEach(id => {
         document.getElementById(id).classList.remove('error-input');
       });
-      ['loginEmailErr','loginPasswordErr','regNameErr','regEmailErr','regPasswordErr'].forEach(id => {
+      ['loginNameErr','loginEmailErr','loginPasswordErr','regNameErr','regEmailErr','regPasswordErr'].forEach(id => {
         document.getElementById(id).classList.remove('show');
       });
       ['regName','regEmail','regPassword'].forEach(id => {
@@ -602,10 +613,12 @@
       e.preventDefault();
       clearErrors();
 
+      const name     = document.getElementById('loginName').value.trim();
       const email    = document.getElementById('loginEmail').value.trim();
       const password = document.getElementById('loginPassword').value;
       let valid = true;
 
+      if (name.length < 2)         { setError('loginName', 'loginNameErr', true); valid = false; }
       if (!emailRegex.test(email)) { setError('loginEmail', 'loginEmailErr', true); valid = false; }
       if (!password)               { setError('loginPassword', 'loginPasswordErr', true); valid = false; }
       if (!valid) return;
@@ -622,8 +635,10 @@
           return;
         }
 
-        setSession(user);
-        showBanner('loginBanner', 'loginBannerMsg', `Welcome back, ${user.name}! Redirecting…`, true);
+        // Update stored name if the user provided a different one at login
+        const displayName = name || user.name;
+        setSession({ ...user, name: displayName });
+        showBanner('loginBanner', 'loginBannerMsg', `Welcome back, ${displayName}! Redirecting…`, true);
 
         setTimeout(() => { window.location.href = 'index.html'; }, 1000);
       }, 700);
@@ -665,7 +680,7 @@
     });
 
     /* ===== CLEAR INLINE ERRORS ON INPUT ===== */
-    ['loginEmail','loginPassword'].forEach(id => {
+    ['loginName','loginEmail','loginPassword'].forEach(id => {
       document.getElementById(id).addEventListener('input', () => {
         document.getElementById(id).classList.remove('error-input');
         hideBanner('loginBanner');
