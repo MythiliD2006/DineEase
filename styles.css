@@ -218,6 +218,16 @@ img{max-width:100%;display:block}
 .cart-summary-row{display:flex;justify-content:space-between;padding:6px 0;font-size:.9rem;color:var(--text2)}
 .cart-total{font-size:1.05rem;font-weight:700;color:var(--text);border-top:1px solid var(--border);padding-top:12px;margin-top:8px}
 
+/* Delivery Address field inside cart */
+.delivery-address-wrap{margin-bottom:14px}
+.delivery-address-label{display:flex;align-items:center;gap:6px;font-size:.8rem;font-weight:600;color:var(--text2);margin-bottom:7px;letter-spacing:.3px}
+.delivery-address-input{width:100%;background:var(--bg3);border:1.5px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-size:.88rem;font-family:var(--font);padding:10px 12px;outline:none;resize:none;transition:var(--transition);line-height:1.5}
+.delivery-address-input::placeholder{color:var(--text3)}
+.delivery-address-input:focus{border-color:var(--accent);background:var(--bg4);box-shadow:0 0 0 3px rgba(255,107,53,.18)}
+.delivery-address-input.input-error{border-color:var(--red);box-shadow:0 0 0 3px rgba(239,68,68,.15)}
+.delivery-address-error{display:none;font-size:.76rem;color:var(--red);font-weight:500;margin-top:5px}
+.delivery-address-error.show{display:block}
+
 /* ===== FOOTER ===== */
 .footer{background:var(--bg2);border-top:1px solid var(--border);padding:60px 0 0}
 .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}

@@ -256,7 +256,20 @@ function initCart() {
   $('#cartBrowseBtn').addEventListener('click', close);
   $('#checkoutBtn').addEventListener('click', () => {
     if (!cart.length) return;
-    
+
+    // --- Validate delivery address ---
+    const addrEl  = $('#deliveryAddress');
+    const addrErr = $('#deliveryAddressErr');
+    const address = addrEl.value.trim();
+    if (!address) {
+      addrEl.classList.add('input-error');
+      addrErr.classList.add('show');
+      addrEl.focus();
+      return;
+    }
+    addrEl.classList.remove('input-error');
+    addrErr.classList.remove('show');
+
     const subtotal = cart.reduce((s,c) => s + c.price*c.qty, 0);
     const delivery = subtotal > 500 ? 0 : 40;
     const gst = Math.round(subtotal * 0.05);
@@ -266,6 +279,7 @@ function initCart() {
       id: Date.now(),
       date: new Date().toLocaleString(),
       items: cart.map(c => ({ name: c.name, qty: c.qty, price: c.price })),
+      address: address,
       total: total
     };
     
@@ -275,6 +289,7 @@ function initCart() {
     
     showToast('Order placed successfully!');
     cart=[]; 
+    addrEl.value = '';
     onCartChange(); 
     close(); 
   });
